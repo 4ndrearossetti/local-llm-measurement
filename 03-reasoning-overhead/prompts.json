@@ -1,0 +1,43 @@
+[
+  {
+    "id": "p1",
+    "tier": 1,
+    "text": "What does this function do? One sentence.\n\nstatic inline float clampf(float v, float lo, float hi) {\n    return v < lo ? lo : (v > hi ? hi : v);\n}"
+  },
+  {
+    "id": "p2",
+    "tier": 1,
+    "text": "What is the I2C address range for 7-bit addressing, and why are some addresses reserved? Answer in 2-3 sentences."
+  },
+  {
+    "id": "p3",
+    "tier": 2,
+    "text": "Convert this struct to use fixed-width types and add a doc comment for each field. Output only the code.\n\nstruct imu_sample {\n    int temp;\n    float gyro[3];\n    float accel[3];\n    unsigned long t;\n};"
+  },
+  {
+    "id": "p4",
+    "tier": 2,
+    "text": "Extract every flag and its value from this command into a two-column table:\n\nllama-server -m model.gguf -ngl 999 -ncmoe 48 --no-mmap -c 65536 --cache-type-k q8_0 --cache-type-v q8_0 --flash-attn on -a qwen3.6-35b -t 8 -b 4096 -ub 4096 -np 1"
+  },
+  {
+    "id": "p5",
+    "tier": 2,
+    "text": "Rewrite this function to return an error code instead of asserting. Use -EINVAL for the bad case, 0 for success. Output only the code.\n\nvoid mixer_set(float thrust, float out[4]) {\n    assert(thrust >= 0.0f && thrust <= 1.0f);\n    for (int i = 0; i < 4; i++) out[i] = thrust;\n}"
+  },
+  {
+    "id": "p6",
+    "tier": 3,
+    "text": "A gyroscope has a constant bias b on one axis. I integrate its rate output to get an angle estimate. Derive how the angle error grows with time t, then explain how the error growth changes if the bias is not constant but a random walk with variance parameter sigma^2 per unit time. Keep it under 300 words."
+  },
+  {
+    "id": "p7",
+    "tier": 3,
+    "text": "An ESP32 FreeRTOS task reads an MPU-6050 over I2C at 200 Hz using vTaskDelayUntil. It runs correctly for 10-60 seconds, then the readings freeze (same values repeat forever) but the task keeps running and the loop timing stays correct. The I2C bus analyzer shows the bus idle after the freeze: no START conditions at all. List the three most likely causes in order of probability and give a one-line check for each."
+  },
+  {
+    "id": "p8",
+    "tier": 3,
+    "text": "I need to store a growing append-only log of sensor samples (24 bytes each, 200 per second) on a microcontroller with 320 KB RAM and an SD card. Reads are rare: occasionally the last 5 seconds, very rarely a full dump. Design the buffering scheme: what lives in RAM, when do writes to SD happen, and what happens during an SD write stall of up to 50 ms? Justify sizes with arithmetic. Under 400 words."
+  }
+]
+
